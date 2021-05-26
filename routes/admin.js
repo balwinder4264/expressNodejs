@@ -1,15 +1,18 @@
 const express = require("express");
 
+const path = require('path')
+
+const routePath = require('../util/path')
 const router  = express.Router();
 // const app=express();
 // app and router functions works in same way so use any here i am using router
-router.get("/add-products",(req,res,next)=>{
+router.get("/add-product",(req,res,next)=>{
     console.log("it is another middleware ")
-    res.send("<form action='/products' method='POST'><input type='text' name ='title'/><button type='submit'>Press me</button></form>")
+    res.sendFile(path.join(routePath,"views",'add-product.html'))
 });
-router.post("/products",(req,res,next)=>{
+router.post("/add-product",(req,res,next)=>{
     console.log(req.body)
-    res.send("<h1>Products is added her !</h1>")
+   res.redirect("/")
 //    next();//jump to next middleware in line 
 })
 
